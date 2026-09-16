@@ -188,6 +188,7 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 </sc-if>
 <sc-if value="{{ hasFeeling }}" hint-placeholder-val="{{ false }}">
 
+<sc-if value="{{ stepNone }}" hint-placeholder-val="{{ true }}">
 <div style="background: {{ feelingBg }};border-radius:22px;padding:22px 20px">
 <div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color: {{ feelingAccent }}">{{ feeling.label }}</div>
 <div style="margin-top:8px;font-size:1.25em;font-weight:800;line-height:1.3;text-wrap:pretty">{{ feeling.title }}</div>
@@ -207,46 +208,47 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 <button onClick="{{ showSupport }}" style="border:1.5px solid #8A4B4B;cursor:pointer;background:transparent;color:#8A4B4B;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:rgba(138,75,75,.08)">{{ feeling.ctaSecondary }}</button>
 </div>
 </sc-if>
-
-<sc-if value="{{ stepBreathing }}" hint-placeholder-val="{{ false }}">
-<div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(30,42,44,.08);text-align:center">
-<div style="height:170px;display:flex;align-items:center;justify-content:center">{{ breathCircle }}</div>
-<div style="font-size:.95em;font-weight:700;color: {{ feelingAccent }}">{{ breathLabel }}</div>
-<div style="margin-top:4px;font-size:.8em;color:#6B7476">Sigue el círculo: inhala, sostén, exhala. Un minuto es suficiente.</div>
-<button onClick="{{ backStep }}" style="margin-top:4px;border:none;background:none;cursor:pointer;padding:8px;font-family:inherit;font-weight:700;font-size:.8em;color:#6B7476">Ocultar ejercicio</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ stepGrounding }}" hint-placeholder-val="{{ false }}">
-<div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(30,42,44,.08)">
-<div style="display:flex;flex-direction:column;gap:10px">
-<sc-for list="{{ groundItems }}" as="gi" hint-placeholder-count="5">
-<div style="display:flex;gap:12px;align-items:center;background:#FFFFFF;border-radius:16px;padding:12px 14px">
-<div style="width:32px;height:32px;border-radius:50%;background: {{ feelingAccent }};color:#FFFFFF;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">{{ gi.n }}</div>
-<div style="font-size:.9em;line-height:1.35;color:#1E2A2C">{{ gi.text }}</div>
-</div>
-</sc-for>
-</div>
-<button onClick="{{ backStep }}" style="margin-top:12px;width:100%;border:none;background:none;cursor:pointer;padding:8px;font-family:inherit;font-weight:700;font-size:.8em;color:#6B7476">Ocultar ejercicio</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ stepSupport }}" hint-placeholder-val="{{ false }}">
-<div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(30,42,44,.08)">
-<div style="font-weight:700">Opciones de apoyo</div>
-<div style="margin-top:8px;font-size:.9em;line-height:1.5;color:#4F5D60">Si necesitas hablar con alguien, estas líneas pueden ayudarte:</div>
-<div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:.85em;color:#4F5D60"><div><strong style="color:#1E2A2C">Línea 106</strong> · Salud mental, gratuita</div><div><strong style="color:#1E2A2C">Línea 123</strong> · Emergencias</div></div>
-<div style="margin-top:10px;font-size:.8em;line-height:1.45;color:#4F5D60">Serenapp no es un servicio de salud ni reemplaza atención profesional.</div>
-<button onClick="{{ backStep }}" style="margin-top:12px;width:100%;border:none;background:none;cursor:pointer;padding:8px;font-family:inherit;font-weight:700;font-size:.8em;color:#6B7476">Ocultar</button>
-</div>
-</sc-if>
-
 <sc-if value="{{ showSupportLine }}" hint-placeholder-val="{{ false }}">
 <div style="margin-top:14px;font-size:.78em;line-height:1.4;color:#6B7476">¿Necesitas hablar con alguien? <strong>Línea 106</strong> (salud mental) · <strong>Línea 123</strong> (emergencias)</div>
 </sc-if>
 </div>
 <button onClick="{{ clearFeeling }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Elegir otra opción</button>
 <button onClick="{{ goHome }}" style="margin-top:6px;width:100%;border:none;background:none;cursor:pointer;padding:8px;font-family:inherit;font-weight:700;font-size:.85em;color:#6B7476">Volver al inicio</button>
+</sc-if>
+
+<sc-if value="{{ stepBreathing }}" hint-placeholder-val="{{ false }}">
+<div style="background:#F3E3D6;border-radius:22px;padding:22px 20px;text-align:center">
+<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A4643F">Respiración guiada</div>
+<div style="height:190px;display:flex;align-items:center;justify-content:center;margin-top:10px">{{ breathCircle }}</div>
+<div style="font-size:.95em;font-weight:700;color:#A4643F">{{ breathLabel }}</div>
+<div style="margin-top:4px;font-size:.8em;color:#6B7476">Sigue el círculo: inhala, sostén, exhala. Un minuto es suficiente.</div>
+</div>
+<button onClick="{{ backStep }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Volver</button>
+</sc-if>
+
+<sc-if value="{{ stepGrounding }}" hint-placeholder-val="{{ false }}">
+<div style="background:#E6E4F0;border-radius:22px;padding:22px 20px">
+<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5E5A9E">Ejercicio 5-4-3-2-1</div>
+<div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ groundItems }}" as="gi" hint-placeholder-count="5">
+<div style="display:flex;gap:12px;align-items:center;background:#FFFFFF;border-radius:16px;padding:12px 14px">
+<div style="width:32px;height:32px;border-radius:50%;background:#5E5A9E;color:#FFFFFF;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">{{ gi.n }}</div>
+<div style="font-size:.9em;line-height:1.35;color:#1E2A2C">{{ gi.text }}</div>
+</div>
+</sc-for>
+</div>
+</div>
+<button onClick="{{ backStep }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Volver</button>
+</sc-if>
+
+<sc-if value="{{ stepSupport }}" hint-placeholder-val="{{ false }}">
+<div style="background:#FFFFFF;border-radius:18px;padding:16px">
+<div style="font-weight:700">Opciones de apoyo</div>
+<div style="margin-top:8px;font-size:.9em;line-height:1.5;color:#4F5D60">Si necesitas hablar con alguien, estas líneas pueden ayudarte:</div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:.85em;color:#4F5D60"><div><strong style="color:#1E2A2C">Línea 106</strong> · Salud mental, gratuita</div><div><strong style="color:#1E2A2C">Línea 123</strong> · Emergencias</div></div>
+</div>
+<div style="margin-top:12px;background:#EFECE4;border-radius:16px;padding:14px 16px;font-size:.8em;line-height:1.45;color:#4F5D60">Serenapp no es un servicio de salud ni reemplaza atención profesional.</div>
+<button onClick="{{ backStep }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Volver</button>
 </sc-if>
 
 </sc-if>
