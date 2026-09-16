@@ -19,6 +19,8 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 @media (max-width:480px){
   .sr-wrap{min-height:100dvh!important;gap:0!important;padding:0!important}
   .sr-label{display:none!important}
+  .sr-header-pad{padding-top:20px!important}
+  .sr-home-pad{padding-top:24px!important}
 }
 </style>
 </helmet>
@@ -32,7 +34,7 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 
 <!-- header -->
 <sc-if value="{{ notHome }}" hint-placeholder-val="{{ false }}">
-<div style="padding:66px 20px 8px;display:flex;align-items:center;gap:12px;flex:none">
+<div class="sr-header-pad" style="padding:66px 20px 8px;display:flex;align-items:center;gap:12px;flex:none">
 <button onClick="{{ back }}" aria-label="Volver" style="width:44px;height:44px;border-radius:22px;border:none;background:#FFFFFF;box-shadow:0 1px 2px rgba(30,42,44,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none" style-hover="background:#EEF3F2"><svg width="12" height="20" viewBox="0 0 12 20" fill="none"><path d="M10 2L2 10l8 8" stroke="#1E2A2C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
 <div style="font-size:1.2em;font-weight:700;letter-spacing:-.01em">{{ title }}</div>
 </div>
@@ -42,7 +44,7 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 
 <!-- ===== INICIO ===== -->
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-<div style="padding:70px 20px 0;animation:fadeIn .3s ease">
+<div class="sr-home-pad" style="padding:70px 20px 0;animation:fadeIn .3s ease">
 <div style="display:flex;justify-content:space-between;align-items:center">
 <div style="font-weight:800;font-size:1.05em;letter-spacing:-.01em;color:#2B7A74">Serenapp</div>
 <div style="font-size:.8em;color:#6B7476;background:#FFFFFF;border-radius:999px;padding:6px 12px;font-weight:600">Cali, Valle</div>
