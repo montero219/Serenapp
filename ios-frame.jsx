@@ -226,11 +226,13 @@ function IOSDevice({
       fontFamily: '-apple-system, system-ui, sans-serif',
       WebkitFontSmoothing: 'antialiased',
     }}>
-      {/* dynamic island */}
-      <div style={{
-        position: 'absolute', top: 11, left: '50%', transform: 'translateX(-50%)',
-        width: 126, height: 37, borderRadius: 24, background: '#000', zIndex: 50,
-      }} />
+      {/* dynamic island — decorative device mockup, hidden on a real mobile viewport (which has its own notch) */}
+      {!isMobile && (
+        <div style={{
+          position: 'absolute', top: 11, left: '50%', transform: 'translateX(-50%)',
+          width: 126, height: 37, borderRadius: 24, background: '#000', zIndex: 50,
+        }} />
+      )}
       {/* status bar (absolute) */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
         <IOSStatusBar dark={dark} />
@@ -241,7 +243,8 @@ function IOSDevice({
         <div style={{ flex: 1, overflow: 'auto' }}>{children}</div>
         {keyboard && <IOSKeyboard dark={dark} />}
       </div>
-      {/* home indicator — always on top */}
+      {/* home indicator — decorative device mockup, hidden on a real mobile viewport (which has its own) */}
+      {!isMobile && (
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 60,
         height: 34, display: 'flex', justifyContent: 'center', alignItems: 'flex-end',
@@ -252,6 +255,7 @@ function IOSDevice({
           background: dark ? 'rgba(255,255,255,0.7)' : 'rgba(0,0,0,0.25)',
         }} />
       </div>
+      )}
     </div>
   );
 }
