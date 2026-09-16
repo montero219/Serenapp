@@ -72,6 +72,7 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 <div style="flex:1;font-size:.85em;line-height:1.4;color:#4F5D60"><strong style="color:#1E2A2C">Sismo leve hace 18 min</strong> · Tuluá, M4.1 · sin daños. Fuente: SGC.</div>
 </div>
 <div style="margin-top:14px;font-size:.75em;color:#8A9294;line-height:1.45;text-align:center">Serenapp no predice sismos ni reemplaza atención profesional.</div>
+<div style="margin-top:6px;font-size:.7em;color:#8A9294;text-align:center">Prototipo académico · Datos simulados</div>
 </div>
 </sc-if>
 
@@ -79,9 +80,9 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 <sc-if value="{{ isFeel }}" hint-placeholder-val="{{ false }}">
 <div style="padding:8px 20px 0;animation:fadeIn .3s ease">
 <div style="background:#2B7A74;color:#FFFFFF;border-radius:22px;padding:20px">
-<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85">Verificación</div>
-<div style="margin-top:8px;font-size:1.3em;font-weight:800;line-height:1.2;text-wrap:pretty">Sí, hubo un sismo cerca de ti hace 18 minutos.</div>
-<div style="margin-top:8px;font-size:.9em;line-height:1.45;opacity:.92">Fue leve y no hay reportes de daños. Es normal sentir inquietud.</div>
+<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85">Demostración</div>
+<div style="margin-top:8px;font-size:1.25em;font-weight:800;line-height:1.25;text-wrap:pretty">Evento sísmico de demostración</div>
+<div style="margin-top:8px;font-size:.9em;line-height:1.45;opacity:.92">En este prototipo se simula un evento registrado cerca de tu ubicación para mostrar cómo funcionaría SerenApp.</div>
 <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
 <button onClick="{{ openLatest }}" style="border:none;cursor:pointer;background:#FFFFFF;color:#2B7A74;font-family:inherit;font-weight:700;font-size:.9em;padding:12px 16px;border-radius:999px;min-height:44px" style-hover="background:#EEF3F2">Ver detalle</button>
 <button onClick="{{ goFeelings }}" style="border:1.5px solid rgba(255,255,255,.6);cursor:pointer;background:transparent;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:12px 16px;border-radius:999px;min-height:44px" style-hover="background:rgba(255,255,255,.12)">Me siento inquieto</button>
@@ -100,7 +101,8 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 </button>
 </sc-for>
 </div>
-<div style="margin-top:18px;background:#EFECE4;border-radius:16px;padding:14px 16px;font-size:.8em;line-height:1.45;color:#4F5D60">Los datos provienen del <strong>Servicio Geológico Colombiano</strong>. Pueden actualizarse minutos después del evento.</div>
+<div style="margin-top:18px;background:#EFECE4;border-radius:16px;padding:14px 16px;font-size:.8em;line-height:1.45;color:#4F5D60">Datos de demostración. En una versión funcional, SerenApp consultaría información proveniente de fuentes oficiales como el Servicio Geológico Colombiano.</div>
+<div style="margin-top:10px;font-size:.7em;color:#8A9294;text-align:center">Prototipo académico · Datos simulados</div>
 </div>
 </sc-if>
 
@@ -121,11 +123,20 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 </div>
 <div style="margin-top:14px;background:#DCEAE7;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:flex-start">
 <div style="width:40px;height:40px;border-radius:12px;background:#2B7A74;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.7em;flex:none">SGC</div>
-<div style="flex:1;font-size:.85em;line-height:1.45"><div style="font-weight:700">Fuente oficial verificada</div><div style="color:#4F5D60;margin-top:2px">Servicio Geológico Colombiano · Red Sismológica Nacional. Publicado {{ event.published }}.</div><a href="#" style="display:inline-block;margin-top:6px;font-weight:700;text-decoration:none">Ver boletín original →</a></div>
+<div style="flex:1;font-size:.85em;line-height:1.45"><div style="font-weight:700">Fuente (datos de demostración)</div><div style="color:#4F5D60;margin-top:2px">En una versión funcional, SerenApp consultaría información verificada del Servicio Geológico Colombiano · Red Sismológica Nacional. Publicado {{ event.published }}.</div></div>
 </div>
+<div style="margin-top:10px;font-size:.7em;color:#8A9294;text-align:center">Prototipo académico · Datos simulados</div>
 <div style="margin-top:14px;background:#FFFFFF;border-radius:18px;padding:16px">
 <div style="font-weight:700">¿Qué significa esto para ti?</div>
-<div style="margin-top:6px;font-size:.9em;line-height:1.5;color:#4F5D60;text-wrap:pretty">{{ event.meaning }}</div>
+<div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{ event.meaningBullets }}" as="m" hint-placeholder-count="3">
+<div style="display:flex;gap:8px;font-size:.9em;line-height:1.45;color:#4F5D60"><span style="flex:none">•</span><span>{{ m }}</span></div>
+</sc-for>
+</div>
+<sc-if value="{{ expandMeaning }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:8px;font-size:.85em;line-height:1.5;color:#6B7476;text-wrap:pretty">{{ event.meaningMore }}</div>
+</sc-if>
+<button onClick="{{ toggleMeaning }}" style="margin-top:8px;border:none;background:none;cursor:pointer;padding:0;font-family:inherit;font-weight:700;font-size:.85em;color:#2B7A74">{{ meaningToggleLabel }}</button>
 </div>
 <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px">
 <button onClick="{{ goGuideAfter }}" style="border:none;cursor:pointer;background:#2B7A74;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.95em;padding:14px 18px;border-radius:999px;min-height:50px" style-hover="background:#246862">Qué hacer después de un sismo</button>
@@ -174,22 +185,67 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 </div>
 </sc-if>
 <sc-if value="{{ hasFeeling }}" hint-placeholder-val="{{ false }}">
+
+<sc-if value="{{ stepNone }}" hint-placeholder-val="{{ true }}">
+<div style="background: {{ feelingBg }};border-radius:22px;padding:22px 20px">
+<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color: {{ feelingAccent }}">{{ feeling.label }}</div>
+<div style="margin-top:8px;font-size:1.25em;font-weight:800;line-height:1.3;text-wrap:pretty">{{ feeling.title }}</div>
+<div style="margin-top:8px;font-size:.9em;line-height:1.5;color:#4F5D60;text-wrap:pretty">{{ feeling.text }}</div>
+<sc-if value="{{ isTranquilo }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ goPlan }}" style="margin-top:16px;width:100%;border:none;cursor:pointer;background:#5F8A3C;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:#4E7530">{{ feeling.cta }}</button>
+</sc-if>
+<sc-if value="{{ isInquieto }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ startBreathing }}" style="margin-top:16px;width:100%;border:none;cursor:pointer;background:#C97B5A;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:#B5694A">{{ feeling.cta }}</button>
+</sc-if>
+<sc-if value="{{ isNervioso }}" hint-placeholder-val="{{ false }}">
+<button onClick="{{ startGrounding }}" style="margin-top:16px;width:100%;border:none;cursor:pointer;background:#5E5A9E;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:#4D4986">{{ feeling.cta }}</button>
+</sc-if>
+<sc-if value="{{ isPreocupado }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+<button onClick="{{ startBreathing }}" style="border:none;cursor:pointer;background:#8A4B4B;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:#753E3E">{{ feeling.ctaPrimary }}</button>
+<button onClick="{{ showSupport }}" style="border:1.5px solid #8A4B4B;cursor:pointer;background:transparent;color:#8A4B4B;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:rgba(138,75,75,.08)">{{ feeling.ctaSecondary }}</button>
+</div>
+</sc-if>
+</div>
+<button onClick="{{ clearFeeling }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Elegir otra opción</button>
+<button onClick="{{ goHome }}" style="margin-top:6px;width:100%;border:none;background:none;cursor:pointer;padding:8px;font-family:inherit;font-weight:700;font-size:.85em;color:#6B7476">Volver al inicio</button>
+</sc-if>
+
+<sc-if value="{{ stepBreathing }}" hint-placeholder-val="{{ false }}">
 <div style="background:#F3E3D6;border-radius:22px;padding:22px 20px;text-align:center">
-<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A4643F">{{ feeling.label }}</div>
-<div style="margin-top:8px;font-size:1.15em;font-weight:700;line-height:1.35;text-wrap:pretty">{{ feeling.message }}</div>
-<div style="height:200px;display:flex;align-items:center;justify-content:center;margin-top:10px">{{ breathCircle }}</div>
+<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A4643F">Respiración guiada</div>
+<div style="height:190px;display:flex;align-items:center;justify-content:center;margin-top:10px">{{ breathCircle }}</div>
 <div style="font-size:.95em;font-weight:700;color:#A4643F">{{ breathLabel }}</div>
-<div style="margin-top:4px;font-size:.8em;color:#6B7476">Sigue el círculo. Un minuto es suficiente.</div>
+<div style="margin-top:4px;font-size:.8em;color:#6B7476">Sigue el círculo: inhala, sostén, exhala. Un minuto es suficiente.</div>
 </div>
-<div style="margin-top:14px;background:#FFFFFF;border-radius:18px;padding:16px">
-<div style="font-weight:700">Algo pequeño que puedes hacer ahora</div>
-<div style="margin-top:6px;font-size:.9em;line-height:1.5;color:#4F5D60;text-wrap:pretty">{{ feeling.tip }}</div>
+<button onClick="{{ backStep }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Volver</button>
+</sc-if>
+
+<sc-if value="{{ stepGrounding }}" hint-placeholder-val="{{ false }}">
+<div style="background:#E6E4F0;border-radius:22px;padding:22px 20px">
+<div style="font-size:.75em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5E5A9E">Ejercicio 5-4-3-2-1</div>
+<div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ groundItems }}" as="gi" hint-placeholder-count="5">
+<div style="display:flex;gap:12px;align-items:center;background:#FFFFFF;border-radius:16px;padding:12px 14px">
+<div style="width:32px;height:32px;border-radius:50%;background:#5E5A9E;color:#FFFFFF;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none">{{ gi.n }}</div>
+<div style="font-size:.9em;line-height:1.35;color:#1E2A2C">{{ gi.text }}</div>
 </div>
-<div style="margin-top:14px;background:#EFECE4;border-radius:18px;padding:16px;font-size:.85em;line-height:1.5;color:#4F5D60">Si la preocupación persiste o interfiere con tu día, puedes hablar con alguien. <strong>Línea 106</strong> (salud mental, gratuita) · <strong>Línea 123</strong> (emergencias). Serenapp no es un servicio de salud.</div>
-<div style="margin-top:14px;display:flex;gap:8px">
-<button onClick="{{ clearFeeling }}" style="flex:1;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Cambiar</button>
-<button onClick="{{ goHome }}" style="flex:1;border:none;cursor:pointer;background:#2B7A74;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#246862">Me siento mejor</button>
+</sc-for>
 </div>
+</div>
+<button onClick="{{ backStep }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Volver</button>
+</sc-if>
+
+<sc-if value="{{ stepSupport }}" hint-placeholder-val="{{ false }}">
+<div style="background:#FFFFFF;border-radius:18px;padding:16px">
+<div style="font-weight:700">Opciones de apoyo</div>
+<div style="margin-top:8px;font-size:.9em;line-height:1.5;color:#4F5D60">Si necesitas hablar con alguien, estas líneas pueden ayudarte:</div>
+<div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;font-size:.85em;color:#4F5D60"><div><strong style="color:#1E2A2C">Línea 106</strong> · Salud mental, gratuita</div><div><strong style="color:#1E2A2C">Línea 123</strong> · Emergencias</div></div>
+</div>
+<div style="margin-top:12px;background:#EFECE4;border-radius:16px;padding:14px 16px;font-size:.8em;line-height:1.45;color:#4F5D60">Serenapp no es un servicio de salud ni reemplaza atención profesional.</div>
+<button onClick="{{ backStep }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Volver</button>
+</sc-if>
+
 </sc-if>
 </div>
 </sc-if>
@@ -209,6 +265,14 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 <div style="margin-top:10px;height:8px;border-radius:4px;background:#EFECE4;overflow:hidden"><div style="height:100%;border-radius:4px;background:#5F8A3C;transition:width .3s;width: {{ checkPct }}"></div></div>
 <div style="margin-top:8px;font-size:.85em;color:#4F5D60;line-height:1.45">Kit, hogar y acuerdos familiares.</div>
 </button>
+<div style="background:#FFFFFF;border-radius:22px;padding:20px">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+<div style="font-weight:800;font-size:1.05em">Alertas de movimientos cercanos</div>
+<span style="flex:none;font-size:.7em;font-weight:700;color:#6B7476;background:#EFECE4;padding:5px 10px;border-radius:999px">Función futura</span>
+</div>
+<div style="margin-top:6px;font-size:.85em;color:#4F5D60;line-height:1.45">Recibe información sobre eventos registrados cerca de tu ubicación.</div>
+<button onClick="{{ openAlertsModal }}" style="margin-top:12px;border:none;cursor:pointer;background:#F7F4EE;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:12px 16px;border-radius:999px;min-height:44px" style-hover="background:#EFECE4">Activar alertas</button>
+</div>
 </div>
 </div>
 </sc-if>
@@ -286,6 +350,17 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 </div>
 </sc-if>
 
+<!-- ===== MODAL ALERTAS FUTURAS ===== -->
+<sc-if value="{{ alertsModalOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;background:rgba(30,42,44,.45);z-index:80;display:flex;align-items:flex-end;justify-content:center">
+<div style="background:#FFFFFF;border-radius:24px 24px 0 0;padding:24px 20px 32px;width:100%;box-sizing:border-box;animation:fadeIn .2s ease">
+<div style="font-weight:800;font-size:1.15em;line-height:1.3">Disponible en una versión futura</div>
+<div style="margin-top:8px;font-size:.9em;line-height:1.5;color:#4F5D60">Esta función no está activa en el prototipo. En una implementación real permitiría recibir información proveniente de fuentes oficiales y servicios de notificaciones.</div>
+<button onClick="{{ closeAlertsModal }}" style="margin-top:16px;width:100%;border:none;cursor:pointer;background:#2B7A74;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.95em;padding:14px 18px;border-radius:999px;min-height:50px" style-hover="background:#246862">Entendido</button>
+</div>
+</div>
+</sc-if>
+
 </div>
 </x-import>
 </div>
@@ -295,15 +370,25 @@ class Component extends DCLogic {
   state = {
     screen: 'home', stack: [], eventId: 0, guideTab: 'antes', feeling: null,
     called: null, shared: false, checks: { k0: true, k1: true, h0: true, f0: false },
-    breathPhase: 0,
+    breathPhase: 0, feelingStep: null, expandMeaning: false, alertsModalOpen: false,
   };
   EVENTS = [
     { id: 0, mag: '4.1', place: 'Tuluá, Valle del Cauca', when: 'Hace 18 min', date: 'Hoy, 10:42 a. m. (hora local)', depth: '112 km', dist: '78 km de ti', felt: 'Leve', damage: 'Ninguno', published: 'hace 9 min', tint: '#DCEAE7',
-      meaning: 'Un sismo de esta magnitud y profundidad suele sentirse como una vibración corta. No se esperan daños. Es posible que sientas réplicas leves en las próximas horas; son normales.' },
+      meaningBullets: ['Vibración corta, de intensidad leve.', 'Sin daños reportados.', 'Podrían sentirse réplicas leves en las próximas horas.'],
+      meaningMore: 'Esto es normal después de sismos de esta magnitud y profundidad; en este ejemplo no requeriría ninguna acción adicional.' },
     { id: 1, mag: '3.6', place: 'Popayán, Cauca', when: 'Ayer', date: 'Ayer, 6:15 p. m. (hora local)', depth: '30 km', dist: '124 km de ti', felt: 'Muy leve', damage: 'Ninguno', published: 'ayer 6:24 p. m.', tint: '#E6E4F0',
-      meaning: 'Un movimiento pequeño y superficial, percibido solo por algunas personas cerca del epicentro. No requiere ninguna acción.' },
+      meaningBullets: ['Movimiento pequeño y superficial.', 'Percibido solo cerca del epicentro.', 'No requiere ninguna acción.'],
+      meaningMore: 'Este tipo de eventos ocurre con frecuencia y rara vez se siente fuera de la zona cercana al epicentro.' },
     { id: 2, mag: '4.8', place: 'Océano Pacífico, frente a Buenaventura', when: 'Hace 3 días', date: 'Jueves, 2:08 a. m. (hora local)', depth: '25 km', dist: '96 km de ti', felt: 'Moderado', damage: 'Sin reportes', published: 'jueves 2:19 a. m.', tint: '#F3E3D6',
-      meaning: 'Fue sentido por muchas personas en el litoral. No generó alerta de tsunami. Si lo sentiste, revisar tu plan de emergencia es una buena forma de recuperar calma.' },
+      meaningBullets: ['Sentido por muchas personas en el litoral.', 'No generó alerta de tsunami.', 'Revisar tu plan de emergencia puede ayudarte a sentir más calma.'],
+      meaningMore: 'Los sismos moderados en zonas costeras suelen generar más atención pública, aunque no siempre representan mayor riesgo.' },
+  ];
+  GROUND = [
+    { n: 5, text: 'Cosas que ves a tu alrededor' },
+    { n: 4, text: 'Cosas que puedes tocar' },
+    { n: 3, text: 'Sonidos que escuchas' },
+    { n: 2, text: 'Olores que percibes' },
+    { n: 1, text: 'Sabor que identificas' },
   ];
   GUIDE = {
     antes: { title: 'Antes: prepara tu entorno', sub: 'Pequeños pasos que hacen una gran diferencia.', tint: '#E4EBD8', steps: [
@@ -324,10 +409,22 @@ class Component extends DCLogic {
       ['Comunícate brevemente', 'Un mensaje corto a tu contacto. Deja las líneas libres.'] ] },
   };
   FEELINGS = [
-    { key: 'inquieto', label: 'Inquieto', dot: '#C97B5A', message: 'Tu cuerpo reaccionó para protegerte. Esa sensación va a bajar.', tip: 'Apoya los pies en el suelo y nombra tres cosas que ves a tu alrededor. Esto ayuda a volver al presente.' },
-    { key: 'asustado', label: 'Asustado', dot: '#A4643F', message: 'Tener miedo después de un sismo es una respuesta natural y compartida.', tip: 'Busca a alguien de confianza y cuéntale cómo te sientes. Hablarlo en voz alta suele aliviar.' },
-    { key: 'alerta', label: 'No puedo dejar de estar alerta', dot: '#5E5A9E', message: 'Estar en alerta es agotador. Puedes darle a tu cuerpo permiso para descansar.', tip: 'Revisa tu plan de emergencia una vez y luego guarda el teléfono. Saber qué harías reduce la necesidad de vigilar.' },
-    { key: 'tranquilo', label: 'Más o menos tranquilo', dot: '#5F8A3C', message: 'Qué bien. Aprovecha este momento para reforzar tu preparación.', tip: 'Confirma que tus contactos de emergencia estén al día. Toma dos minutos.' },
+    { key: 'tranquilo', label: 'Tranquilo', dot: '#5F8A3C', bg: '#E4EBD8', accent: '#5F8A3C',
+      title: 'Te sientes tranquilo',
+      text: 'Aprovecha este momento para mantenerte preparado. Revisa que conozcas tu ruta de evacuación, punto de encuentro y contactos de emergencia.',
+      cta: 'Revisar mi plan de emergencia' },
+    { key: 'inquieto', label: 'Inquieto', dot: '#C97B5A', bg: '#F3E3D6', accent: '#A4643F',
+      title: 'Es normal sentir inquietud',
+      text: 'Haz una pausa. Inhala lentamente durante 4 segundos, mantén el aire 4 segundos y exhala durante 6. Repítelo varias veces.',
+      cta: 'Iniciar respiración guiada' },
+    { key: 'nervioso', label: 'Nervioso', dot: '#5E5A9E', bg: '#E6E4F0', accent: '#5E5A9E',
+      title: 'Volvamos al momento presente',
+      text: 'Observa tu entorno e identifica 5 cosas que ves, 4 que puedes tocar, 3 que escuchas, 2 que hueles y 1 que saboreas.',
+      cta: 'Comenzar ejercicio 5-4-3-2-1' },
+    { key: 'preocupado', label: 'Muy preocupado', dot: '#8A4B4B', bg: '#F3DCDC', accent: '#8A4B4B',
+      title: 'Primero verifica que estés en un lugar seguro',
+      text: 'Si no existe un peligro inmediato, permanece en un lugar seguro y respira lentamente. Puedes comunicarte con una persona de confianza. Si el malestar es intenso o persiste, considera buscar orientación profesional.',
+      ctaPrimary: 'Ejercicio para calmarme', ctaSecondary: 'Ver opciones de apoyo' },
   ];
   CHECK = [
     { title: 'Kit de emergencia', items: [['k0', 'Agua para 3 días (3 L por persona)'], ['k1', 'Linterna y pilas'], ['k2', 'Botiquín y medicamentos'], ['k3', 'Copias de documentos y algo de efectivo']] },
@@ -369,15 +466,28 @@ class Component extends DCLogic {
       goHome: () => this.setState({ screen: 'home', stack: [] }),
       goFeel: () => this.go('feel'), goGuide: () => this.go('guide'), goGuideAfter: () => this.go('guide', { guideTab: 'despues' }),
       goFeelings: () => this.go('feelings'), goPrep: () => this.go('prep'), goPlan: () => this.go('plan'), goCheck: () => this.go('check'),
-      openLatest: () => this.go('event', { eventId: 0 }),
-      events: this.EVENTS.map(e => ({ ...e, open: () => this.go('event', { eventId: e.id }) })),
+      openLatest: () => this.go('event', { eventId: 0, expandMeaning: false }),
+      events: this.EVENTS.map(e => ({ ...e, open: () => this.go('event', { eventId: e.id, expandMeaning: false }) })),
       event: this.EVENTS[s.eventId],
+      expandMeaning: s.expandMeaning,
+      toggleMeaning: () => this.setState(st => ({ expandMeaning: !st.expandMeaning })),
+      meaningToggleLabel: s.expandMeaning ? 'Ver menos' : 'Ver más',
       guideTabs: [['antes', 'Antes'], ['durante', 'Durante'], ['despues', 'Después']].map(([k, label]) => ({ label, style: tabStyle(s.guideTab === k), select: () => this.setState({ guideTab: k }) })),
       guideTitle: g.title, guideSub: g.sub, guideTint: g.tint, guideIsDuring: s.guideTab === 'durante',
       guideSteps: g.steps.map(([title, body], i) => ({ n: i + 1, title, body })),
-      feelings: this.FEELINGS.map(f => ({ ...f, select: () => this.setState({ feeling: f.key, breathPhase: 0 }) })),
+      feelings: this.FEELINGS.map(f => ({ ...f, select: () => this.setState({ feeling: f.key, feelingStep: null, breathPhase: 0 }) })),
       noFeeling: !feeling, hasFeeling: !!feeling, feeling: feeling || {},
-      clearFeeling: () => this.setState({ feeling: null }),
+      feelingBg: feeling ? feeling.bg : '#FFFFFF', feelingAccent: feeling ? feeling.accent : '#6B7476',
+      isTranquilo: !!feeling && feeling.key === 'tranquilo', isInquieto: !!feeling && feeling.key === 'inquieto',
+      isNervioso: !!feeling && feeling.key === 'nervioso', isPreocupado: !!feeling && feeling.key === 'preocupado',
+      stepNone: s.feelingStep === null, stepBreathing: s.feelingStep === 'breathing',
+      stepGrounding: s.feelingStep === 'grounding', stepSupport: s.feelingStep === 'support',
+      groundItems: this.GROUND,
+      startBreathing: () => this.setState({ feelingStep: 'breathing', breathPhase: 0 }),
+      startGrounding: () => this.setState({ feelingStep: 'grounding' }),
+      showSupport: () => this.setState({ feelingStep: 'support' }),
+      backStep: () => this.setState({ feelingStep: null }),
+      clearFeeling: () => this.setState({ feeling: null, feelingStep: null }),
       breathLabel: phases[s.breathPhase],
       breathCircle: React.createElement('div', { style: { width: 150, height: 150, borderRadius: '50%', background: 'radial-gradient(circle at 50% 40%, #F0C9B3, #C97B5A)', animation: reduce ? 'none' : 'breathe 8.1s ease-in-out infinite', boxShadow: '0 12px 30px rgba(201,123,90,.3)' } }),
       planStatus: this.CONTACTS.length >= 2 ? 'Completo' : 'Pendiente',
@@ -393,6 +503,9 @@ class Component extends DCLogic {
       route: [{ n: 1, text: 'Sal por la puerta principal; no uses el ascensor.' }, { n: 2, text: 'Cruza la calle 5 por el semáforo, lejos de los postes.' }, { n: 3, text: 'Entra al parque por la puerta norte y espera en la zona verde.' }],
       shareLabel: s.shared ? 'Plan compartido con 2 contactos ✓' : 'Compartir plan con mi familia',
       sharePlan: () => this.setState({ shared: true }),
+      alertsModalOpen: s.alertsModalOpen,
+      openAlertsModal: () => this.setState({ alertsModalOpen: true }),
+      closeAlertsModal: () => this.setState({ alertsModalOpen: false }),
       navItems: [['home', 'Inicio', 'goHome'], ['feel', 'Sismos', 'feel'], ['guide', 'Guía', 'guide'], ['prep', 'Preparación', 'prep']].map(([k, label]) => ({
         label, style: navStyle(navOn === k), go: () => (k === 'home' ? this.setState({ screen: 'home', stack: [] }) : this.setState({ screen: k, stack: ['home'] })) })),
     };
