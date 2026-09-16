@@ -24,7 +24,7 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 }
 </style>
 </helmet>
-<div class="sr-wrap" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px 20px;box-sizing:border-box">
+<div class="sr-wrap" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:20px;padding:40px 20px;box-sizing:border-box">
 <div class="sr-label" style="display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center">
 <div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#6B7476;font-weight:700">Serenapp · prototipo interactivo</div>
 <div style="font-size:13px;color:#6B7476">Toca las tarjetas y botones para navegar. Datos sísmicos de ejemplo.</div>
@@ -207,6 +207,9 @@ a{color:#2B7A74}a:hover{color:#1F5F5A}
 <button onClick="{{ startBreathing }}" style="border:none;cursor:pointer;background:#8A4B4B;color:#FFFFFF;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:#753E3E">{{ feeling.ctaPrimary }}</button>
 <button onClick="{{ showSupport }}" style="border:1.5px solid #8A4B4B;cursor:pointer;background:transparent;color:#8A4B4B;font-family:inherit;font-weight:700;font-size:.9em;padding:14px 16px;border-radius:999px;min-height:50px" style-hover="background:rgba(138,75,75,.08)">{{ feeling.ctaSecondary }}</button>
 </div>
+</sc-if>
+<sc-if value="{{ showSupportLine }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:14px;font-size:.78em;line-height:1.4;color:#6B7476">¿Necesitas hablar con alguien? <strong>Línea 106</strong> (salud mental) · <strong>Línea 123</strong> (emergencias)</div>
 </sc-if>
 </div>
 <button onClick="{{ clearFeeling }}" style="margin-top:14px;width:100%;border:none;cursor:pointer;background:#FFFFFF;color:#1E2A2C;font-family:inherit;font-weight:700;font-size:.9em;padding:14px;border-radius:999px;min-height:50px" style-hover="background:#EFECE4">Elegir otra opción</button>
@@ -482,6 +485,7 @@ class Component extends DCLogic {
       feelingBg: feeling ? feeling.bg : '#FFFFFF', feelingAccent: feeling ? feeling.accent : '#6B7476',
       isTranquilo: !!feeling && feeling.key === 'tranquilo', isInquieto: !!feeling && feeling.key === 'inquieto',
       isNervioso: !!feeling && feeling.key === 'nervioso', isPreocupado: !!feeling && feeling.key === 'preocupado',
+      showSupportLine: s.feelingStep === null && !!feeling && feeling.key !== 'preocupado',
       stepNone: s.feelingStep === null, stepBreathing: s.feelingStep === 'breathing',
       stepGrounding: s.feelingStep === 'grounding', stepSupport: s.feelingStep === 'support',
       groundItems: this.GROUND,
